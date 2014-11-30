@@ -15,7 +15,6 @@ column(4,
          
          ),
        wellPanel(
-         uiOutput("herolist"),
-         uiOutput("heroinfo")
+         uiOutput("herolist")
        )
 )
