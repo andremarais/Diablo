@@ -10,19 +10,24 @@
 # require(RCurl)
 # require(XLM)
 
-library("RCurl", lib.loc="~/R/win-library/3.1")
-library("XML", lib.loc="~/R/win-library/3.1")
+# library("RCurl", lib.loc="~/R/win-library/3.1")
+# library("XML", lib.loc="~/R/win-library/3.1")
 
+require(RCurl)
+require(XML)
 #setting up variables ----
-battletag.name <- "Veldrin"
-battletag.code <- 2890
-zone = "eu"
+
+GetProfile <- function(BTN, BTC, Zone){
+battletag.name <- BTN
+battletag.code <- BTC
+zone = Zone
 host <- paste(zone, ".battle.net", sep = "")
 
 #download profile data----
 url <- paste(host, "/api/d3/profile/" , battletag.name,"-" ,battletag.code, "/", sep = "")
 diablo <- httpGET(url,curl = getCurlHandle())
 
+stopifnot(grep("The account could not be found", diablo) == 1 )
 
 # parse html
 doc <- htmlParse(diablo, asText=TRUE)
@@ -91,4 +96,6 @@ levels(herolist$Dead) <- c("No", "Yes")
 
 
 
-a<-list(herolist$Hero.Name)
+#a<-levels(herolist$Hero.Name)
+return(herolist)
+}
