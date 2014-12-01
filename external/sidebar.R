@@ -16,6 +16,8 @@ column(4,
          ),
        wellPanel(
          uiOutput("herolist"),
-         uiOutput("heroinfo")
+         tabsetPanel(
+           tabPanel("Basic Info"),
+           tabPanel("Detailed Info"))
        )
 )

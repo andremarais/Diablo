@@ -1,27 +1,3 @@
-#install packages----
-#install.packages("httpRequest")
-
-
-# install.packages("XML")
-# install.packages("RCurl")
-
-#load packages----
-#require(httpRequest)
-# require(RCurl)
-# require(XLM)
-
-# library("RCurl", lib.loc="~/R/win-library/3.1")
-# library("XML", lib.loc="~/R/win-library/3.1")
-
-BTN <- "Veldrin"
-BTC <- 2890
-Zone <- "EU"
-
-
-require(RCurl)
-require(XML)
-#setting up variables ----
-
 GetProfile <- function(BTN, BTC, Zone){
 battletag.name <- BTN
 battletag.code <- BTC
@@ -98,6 +74,6 @@ levels(herolist$Dead) <- c("No", "Yes")
 
 
 
-#a<-levels(herolist$Hero.Name)
+
 return(herolist)
 }
