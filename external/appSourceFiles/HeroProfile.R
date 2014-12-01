@@ -1,4 +1,7 @@
 
+
+
+heroesstats <- function(BTN,BTC,Zone) {
 herostats <- data.frame(matrix(NA))
 
 
@@ -49,3 +52,6 @@ herostats[i,8] <- substring(elites, regexpr(":", elites) + 2,nchar(elites))
 }
 rownames(herostats) <- c(herolist$Hero.Name)
 colnames(herostats) <- c("Life", "Damage", "Armor", "Strenth", "Dexterity", "Vitality", "Intelligence", "Elite.Kills") 
+
+return(herostats)
+}

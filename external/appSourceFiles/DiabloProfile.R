@@ -13,6 +13,12 @@
 # library("RCurl", lib.loc="~/R/win-library/3.1")
 # library("XML", lib.loc="~/R/win-library/3.1")
 
+Brotato-1208
+
+#MARODER #2367
+#MARTIN #21751
+#GUSPOPOLOOSE #2654
+#KVASTARAS #2280
 BTN <- "Veldrin"
 BTC <- 2890
 Zone <- "EU"
@@ -50,7 +56,7 @@ hnames <- heroes[grep("name", heroes)]
 hclasses <- heroes[grep("class", heroes)]
 hlevels <- heroes[grep("level", heroes)]
 hseasonal <- heroes[grep("seasonal", heroes)]
-hid <- heroes[grep("id", heroes)]
+hid <- heroes[grep("\"id", heroes)]
 hgender <- heroes[grep("gender", heroes)]
 hhardcore <- heroes[grep("hardcore", heroes)]
 hdead <- heroes[grep("dead", heroes)]
@@ -98,6 +104,6 @@ levels(herolist$Dead) <- c("No", "Yes")
 
 
 
-#a<-levels(herolist$Hero.Name)
+
 return(herolist)
 }
