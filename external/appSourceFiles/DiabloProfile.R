@@ -13,6 +13,11 @@
 # library("RCurl", lib.loc="~/R/win-library/3.1")
 # library("XML", lib.loc="~/R/win-library/3.1")
 
+BTN <- "Veldrin"
+BTC <- 2890
+Zone <- "EU"
+
+
 require(RCurl)
 require(XML)
 #setting up variables ----
@@ -54,32 +59,29 @@ hdead <- heroes[grep("dead", heroes)]
 herolist <- NULL
 #sets first row for data frame
 herolist <- data.frame(matrix(NA))
-
-herolist[1,1]  <- substring(hnames[1], regexpr(":",hnames[1])+3,regexpr(",",hnames[1])-2)  
-herolist[1,2] <- substring(hclasses[1], regexpr(":",hclasses[1])+3,regexpr(",",hclasses[1])-2)  
-herolist[1,3] <- substring(hlevels[1], regexpr("\\:",hlevels[1])+2,regexpr("\\,",hlevels[1])-1) # offest is due to integer value of levels
-herolist[1,4] <- substring(hseasonal[1], regexpr("\\:",hseasonal[1])+2,regexpr("\\,",hseasonal[1])-1) #^^
-herolist[1,5] <- substring(hid[1], regexpr("\\:",hid[1])+2,regexpr("\\,",hid[1])-1) #^^
-herolist[1,6] <- substring(hgender[1], regexpr("\\:",hgender[1])+2,regexpr("\\,",hgender[1])-1) #^^
-herolist[1,7] <- substring(hhardcore[1], regexpr("\\:",hhardcore[1])+2,regexpr("\\,",hhardcore[1])-1) #^^
-herolist[1,8] <- substring(hdead[1], regexpr("\\:",hdead[1])+2,regexpr("\\,",hdead[1])-1) #^^
-
 #populates rest of data
-for (i in 2:length(hnames)) {
+for (i in 1:length(hnames)) {
 
-  herolist <- rbind( herolist, c(substring(hnames[i], regexpr(":",hnames[i])+3,regexpr(",",hnames[i])-2),
-               substring(hclasses[i], regexpr(":",hclasses[i])+3,regexpr(",",hclasses[i])-2),
-               substring(hlevels[i], regexpr("\\:",hlevels[i])+2,regexpr("\\,",hlevels[i])-1),
-               substring(hseasonal[i], regexpr("\\:",hseasonal[i])+2,regexpr("\\,",hseasonal[i])-1), 
-               substring(hid[i], regexpr("\\:",hid[i])+2,regexpr("\\,",hid[i])-1),
-               substring(hgender[i], regexpr("\\:",hgender[i])+2,regexpr("\\,",hgender[i])-1),
-               substring(hhardcore[i], regexpr("\\:",hhardcore[i])+2,regexpr("\\,",hhardcore[i])-1),
-               substring(hdead[i], regexpr("\\:",hdead[i])+2,regexpr("\\,",hdead[i])-1)))
+  
+  
+  herolist[i,1] <- substring(hnames[i], regexpr(":",hnames[i])+3,regexpr(",",hnames[i])-2)  
+  herolist[i,2] <- substring(hclasses[i], regexpr(":",hclasses[i])+3,regexpr(",",hclasses[i])-2)  
+  herolist[i,3] <- substring(hlevels[i], regexpr("\\:",hlevels[i])+2,regexpr("\\,",hlevels[i])-1) # offest is due to integer value of levels
+  herolist[i,4] <- substring(hseasonal[i], regexpr("\\:",hseasonal[i])+2,regexpr("\\,",hseasonal[i])-1) #^^
+  herolist[i,5] <- substring(hid[i], regexpr("\\:",hid[i])+2,regexpr("\\,",hid[i])-1) #^^
+  herolist[i,6] <- substring(hgender[i], regexpr("\\:",hgender[i])+2,regexpr("\\,",hgender[i])-1) #^^
+  herolist[i,7] <- substring(hhardcore[i], regexpr("\\:",hhardcore[i])+2,regexpr("\\,",hhardcore[i])-1) #^^
+  herolist[i,8] <- substring(hdead[i], regexpr("\\:",hdead[i])+2,regexpr("\\,",hdead[i])-1) #^^
+  
+  
+  
 }
 colnames(herolist) <- c("Hero.Name", "Class", "Level", "Seasonal", "Hero.ID", "Gender", "Hardcore", "Dead")
+herolist
 
 #refining fields
 #levels
+
 herolist$Level <- as.integer(herolist$Level)
 #gender
 herolist$Gender <- as.factor(herolist$Gender)
@@ -91,7 +93,7 @@ levels(herolist$Seasonal) <- c("No", "Yes")
 herolist$Hardcore <- as.factor(herolist$Hardcore)
 levels(herolist$Hardcore) <- c("No", "Yes")
 #Dead state
-herolist$Dead <- as.factor(herolist$Dead)
+# herolist$Dead <- as.factor(herolist$Dead)
 levels(herolist$Dead) <- c("No", "Yes")
 
 
