@@ -1,3 +1,8 @@
+require(RCurl)
+require(XML)
+
+
+
 #source("external/uiHead.R",local=T)
 shinyUI(fluidPage(
   #source("external/header.R",local=T)$value,

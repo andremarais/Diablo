@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #install packages----
 #install.packages("httpRequest")
 
@@ -28,18 +29,20 @@ require(RCurl)
 require(XML)
 #setting up variables ----
 
+=======
+>>>>>>> origin/master
 GetProfile <- function(BTN, BTC, Zone){
 battletag.name <- BTN
 battletag.code <- BTC
-zone = Zone
+zone <- Zone
 host <- paste(zone, ".battle.net", sep = "")
 
 #download profile data----
 url <- paste(host, "/api/d3/profile/" , battletag.name,"-" ,battletag.code, "/", sep = "")
 diablo <- httpGET(url,curl = getCurlHandle())
 
-stopifnot(grep("The account could not be found", diablo) == 1 )
-
+#if(grep("The account could not be found", diablo) == 1 ) return("No such profile")
+# else if (grep("The account could not be found", diablo) != 1 ) { 
 # parse html
 doc <- htmlParse(diablo, asText=TRUE)
 plain.text <- xpathSApply(doc, "//p", xmlValue)
@@ -83,7 +86,7 @@ for (i in 1:length(hnames)) {
   
 }
 colnames(herolist) <- c("Hero.Name", "Class", "Level", "Seasonal", "Hero.ID", "Gender", "Hardcore", "Dead")
-herolist
+
 
 #refining fields
 #levels
@@ -104,6 +107,11 @@ levels(herolist$Dead) <- c("No", "Yes")
 
 
 
+<<<<<<< HEAD
 
+=======
+if(grep("The account could not be found", diablo) == 1 ) return("No such profile")
+#else if(grep("The account could not be found", diablo) =="logical(0)" ) return(herolist)
+>>>>>>> origin/master
 return(herolist)
 }
